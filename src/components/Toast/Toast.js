@@ -18,13 +18,8 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-/* TODO
-- adjust styles based on variant
-*/
-
 function Toast({ message, variant, setShowToast }) {
   
-  // const className = `${styles.toast} `;
   const Icon = ICONS_BY_VARIANT[variant]
 
   return (
