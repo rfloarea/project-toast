@@ -4,14 +4,14 @@ import Toast from '../Toast';
 import styles from './ToastShelf.module.css';
 
 
-function ToastShelf({ toasts }) {
+function ToastShelf({ toasts, handleDismiss }) {
 
   // iterate over our toasts array to render one Toast per object in that array
   return (
     <ol className={styles.wrapper}>
       {toasts.map(({ message, variant, id }) => (
         <li key={id} className={styles.toastWrapper}>
-          <Toast variant={variant} >
+          <Toast id={id} variant={variant} handleDismiss={handleDismiss} >
             {message}
           </Toast>
         </li>

@@ -48,6 +48,17 @@ function ToastPlayground() {
     setVariant(VARIANT_OPTIONS[0]);
   };
 
+  // remove selected object from the array of toasts
+  function handleDismiss(id) {
+    // duplicate our array and filter through it, 
+    // only keeping the objects that do NOT have the id of the dismissed toast
+    const nextToasts = toasts.filter(toast => {
+      return toast.id !== id;
+    })
+    // update our toasts state
+    setToasts(nextToasts);
+  }
+
   return (
     <div className={styles.wrapper}>
       <header>
@@ -55,7 +66,7 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
       
-      <ToastShelf toasts={toasts} />
+      <ToastShelf toasts={toasts} handleDismiss={handleDismiss} />
 
       <form className={styles.controlsWrapper} onSubmit={handleCreateToast}>
         <div className={styles.row}>
