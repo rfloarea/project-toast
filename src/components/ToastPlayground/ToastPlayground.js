@@ -29,7 +29,8 @@ function ToastPlayground() {
   ]);
 
   // create a new toast object and add it to our array of toasts
-  function handleCreateToast() {
+  function handleCreateToast(event) {
+    event.preventDefault();
     // duplicate existing array of toasts
     // and push new object
     const nextToasts = [
@@ -56,7 +57,7 @@ function ToastPlayground() {
       
       <ToastShelf toasts={toasts} />
 
-      <div className={styles.controlsWrapper}>
+      <form className={styles.controlsWrapper} onSubmit={handleCreateToast}>
         <div className={styles.row}>
           <label
             htmlFor="message"
@@ -103,14 +104,12 @@ function ToastPlayground() {
           <div
             className={`${styles.inputWrapper} ${styles.radioWrapper}`}
           >
-            <Button 
-              onClick={handleCreateToast}
-            >
+            <Button>
               Pop Toast!
             </Button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
