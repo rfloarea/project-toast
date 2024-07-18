@@ -7,7 +7,6 @@ import { ToastContext } from "../ToastProvider/ToastProvider";
 function ToastShelf() {
   const { toasts } = React.useContext(ToastContext);
 
-  // iterate over our toasts array to render one Toast per object in that array
   return (
     <ol className={styles.wrapper}>
       {toasts.map(({ message, variant, id }) => (
