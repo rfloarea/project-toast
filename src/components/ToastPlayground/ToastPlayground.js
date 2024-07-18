@@ -42,6 +42,9 @@ function ToastPlayground() {
     ];
     // update toasts state
     setToasts(nextToasts);
+    // clear the form data on submit
+    setMessage('');
+    setVariant(VARIANT_OPTIONS[0]);
   };
 
   return (
