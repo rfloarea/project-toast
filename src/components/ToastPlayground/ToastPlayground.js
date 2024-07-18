@@ -1,16 +1,48 @@
 import React from 'react';
 
 import Button from '../Button';
-import Toast from "../Toast/Toast";
+import ToastShelf from "../ToastShelf/ToastShelf";
 
 import styles from './ToastPlayground.module.css';
 
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
+
+  // collect our form data and hold it in state
   const [message, setMessage] = React.useState('');
   const [variant, setVariant] = React.useState('');
-  const [showToast, setShowToast] = React.useState(false);
+
+  // create our array of Toast objects (to be used in our ToastShelf)
+  const [toasts, setToasts] = React.useState([
+    // placeholder objects
+    {
+      message: 'Opps. It broke.',
+      variant: 'error',
+      id: Math.random(),
+    },
+    {
+      message: 'This is a notice',
+      variant: 'notice',
+      id: Math.random(),
+    }
+  ]);
+
+  // create a new toast object and add it to our array of toasts
+  function handleCreateToast() {
+    // duplicate existing array of toasts
+    // and push new object
+    const nextToasts = [
+      ...toasts,
+      {
+        message,
+        variant,
+        id: Math.random(),
+      }
+    ];
+    // update toasts state
+    setToasts(nextToasts);
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -18,7 +50,8 @@ function ToastPlayground() {
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
-      {showToast && <Toast message={message} variant={variant} setShowToast={setShowToast} />}
+      
+      <ToastShelf toasts={toasts} />
 
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
@@ -67,7 +100,11 @@ function ToastPlayground() {
           <div
             className={`${styles.inputWrapper} ${styles.radioWrapper}`}
           >
-            <Button onClick={() => setShowToast(true)}>Pop Toast!</Button>
+            <Button 
+              onClick={handleCreateToast}
+            >
+              Pop Toast!
+            </Button>
           </div>
         </div>
       </div>
