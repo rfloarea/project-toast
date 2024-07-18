@@ -1,5 +1,18 @@
 # Toast Component Project
 
+## My Notes
+
+This was a super fun project!
+
+Some things I learned:
+
+- It's helpful to comment in what I want to do in plain english before messing with code.
+- I'm getting less scared of moving code around and not losing my place.
+- My favorite part was refactoring to use context rather than prop drilling. It feels like I use different (but related) mental "stuff" to refactor something vs create from scratch. Improving something seems to be very rewarding and very motivating. The "creating" muscle is great too, not hating on that.
+- I'm getting better at thinking in React. Or maybe it's better to say that I'm getting better at thinking/problem-solving and then implementing that solution in React.
+
+---
+
 ## Joy of React, Project II
 
 In this project, we'll dive deep into the implementation of a single common UI component: A `<Toast>` message component.
