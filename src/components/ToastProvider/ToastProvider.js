@@ -1,10 +1,18 @@
 import React from 'react';
+import { useKeydown } from "../../hooks/useKeydown";
 
 export const ToastContext = React.createContext();
 
 function ToastProvider({ children }) {
 
   const [toasts, setToasts] = React.useState([]);
+
+  // memoize our custom hook so it only runs once on initial mount 
+  // (because 'callback' inside our custom hook will never change on re-renders)
+  const handleEscape = React.useCallback(() => {
+    setToasts([]);
+  }, [])
+  useKeydown('Escape', handleEscape)
 
   function createToast(message, variant) {
     const nextToasts = [
@@ -24,19 +32,6 @@ function ToastProvider({ children }) {
     })
     setToasts(nextToasts);
   }
-
-  React.useEffect(() => {
-    function handleClearAllToasts(event) {
-      if (event.key === 'Escape') {
-        setToasts([]);
-      }
-    }
-    window.addEventListener('keydown', handleClearAllToasts);
-
-    return () => {
-      window.removeEventListener('keydown', handleClearAllToasts);
-    }
-  }, []);
 
   return (
     <ToastContext.Provider
